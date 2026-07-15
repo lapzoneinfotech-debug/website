@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Products collection:
+    // Anyone can read (view laptops on the store)
+    // Only authenticated users (admins) can create, update, or delete
+    match /products/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Enquiries collection:
+    // Anyone can create an enquiry from contact page
+    // Only admins can read, update, or delete
+    match /enquiries/{document=**} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+
+    // Default rule for any other collections you might add later:
+    // Only admins can read/write
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
