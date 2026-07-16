@@ -11,6 +11,7 @@ import ProductDetails from './pages/ProductDetails'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import FAQ from './pages/FAQ'
+import Gallery from './pages/Gallery'
 import NotFound from './pages/NotFound'
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin'
@@ -33,6 +34,7 @@ function App() {
           <Route path="about" element={<AboutUs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 

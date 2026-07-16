@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import { Search, Filter, X, ChevronDown, SlidersHorizontal, Loader2 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { collection, getDocs } from 'firebase/firestore';
@@ -7,13 +8,35 @@ import { db } from '../lib/firebase';
 
 const BRANDS = ['All', 'Apple', 'Dell', 'Lenovo', 'HP', 'Asus', 'Acer', 'MSI', 'Others'];
 
+const CATEGORIES = ['All', 'Laptops', 'Desktops', 'Accessories'];
+
 const FilterSidebar = ({
   prefix,
   searchQuery, setSearchQuery,
+  selectedCategory, setSelectedCategory,
   selectedBrand, setSelectedBrand,
   selectedCondition, setSelectedCondition
 }) => (
   <div className="space-y-8">
+    <div>
+      <h3 className="font-bold text-slate-900 mb-3 text-lg">Category</h3>
+      <div className="flex flex-col gap-1">
+        {CATEGORIES.map(cat => (
+          <div 
+            key={cat} 
+            className="flex items-center gap-3 cursor-pointer group py-2"
+            onClick={() => setSelectedCategory(cat)}
+          >
+            <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-colors ${selectedCategory === cat ? 'border-secondary bg-secondary' : 'border-slate-300 group-hover:border-slate-400'}`}>
+              {selectedCategory === cat && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+            </div>
+            <span className={`text-sm font-medium transition-colors ${selectedCategory === cat ? 'text-secondary' : 'text-slate-600 group-hover:text-slate-900'}`}>
+              {cat}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
     <div>
       <h3 className="font-bold text-slate-900 mb-3 text-lg">Brand</h3>
       <div className="flex flex-col gap-1">
@@ -57,10 +80,18 @@ const FilterSidebar = ({
 );
 
 const Shop = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'All';
+  // Capitalize the first letter if it came from the URL as lowercase (e.g. 'laptops' -> 'Laptops')
+  const formattedInitialCategory = initialCategory !== 'All' 
+    ? initialCategory.charAt(0).toUpperCase() + initialCategory.slice(1) 
+    : 'All';
+
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(formattedInitialCategory);
   const [selectedBrand, setSelectedBrand] = useState('All');
   const [selectedCondition, setSelectedCondition] = useState('All');
   const [sortOption, setSortOption] = useState('newest');
@@ -93,6 +124,9 @@ const Shop = () => {
       );
     }
 
+    if (selectedCategory !== 'All') {
+      result = result.filter(p => (p.category || 'Laptops') === selectedCategory);
+    }
     if (selectedBrand !== 'All') result = result.filter(p => p.brand === selectedBrand);
     if (selectedCondition !== 'All') result = result.filter(p => p.condition === selectedCondition);
 
@@ -121,7 +155,7 @@ const Shop = () => {
     }
 
     return result;
-  }, [allProducts, searchQuery, selectedBrand, selectedCondition, sortOption]);
+  }, [allProducts, searchQuery, selectedCategory, selectedBrand, selectedCondition, sortOption]);
 
 
 
@@ -180,6 +214,7 @@ const Shop = () => {
               <FilterSidebar 
                 prefix="desktop" 
                 searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                 selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand}
                 selectedCondition={selectedCondition} setSelectedCondition={setSelectedCondition}
               />
@@ -206,7 +241,7 @@ const Shop = () => {
                 <p className="text-slate-500 max-w-md">Try adjusting your filters or search query to find what you're looking for.</p>
                 <button 
                   onClick={() => {
-                    setSearchQuery(''); setSelectedBrand('All'); setSelectedCondition('All');
+                    setSearchQuery(''); setSelectedCategory('All'); setSelectedBrand('All'); setSelectedCondition('All');
                   }}
                   className="mt-6 text-secondary font-medium hover:underline"
                 >
@@ -250,6 +285,7 @@ const Shop = () => {
                 <FilterSidebar 
                   prefix="mobile" 
                   searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                  selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}
                   selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand}
                   selectedCondition={selectedCondition} setSelectedCondition={setSelectedCondition}
                 />

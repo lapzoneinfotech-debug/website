@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ShieldCheck, Truck, ArrowRight, MessageCircle, ChevronRight, Check, Wallet, Loader2 } from 'lucide-react';
+import { ShieldCheck, Truck, ArrowRight, MessageCircle, ChevronRight, Check, Loader2, Tag } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -142,30 +142,56 @@ const ProductDetails = () => {
             </div>
 
             {/* CTA */}
-            <div className="mt-auto flex flex-col sm:flex-row gap-4 sticky bottom-4 z-40 bg-white p-4 -mx-4 sm:mx-0 sm:p-0 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.1)] sm:shadow-none border-t border-slate-100 sm:border-0 rounded-t-2xl sm:rounded-none">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 z-40 bg-white">
               <button 
                 onClick={handleWhatsAppBuy}
                 disabled={product.stockStatus !== 'In Stock'}
-                className={`flex-1 text-white py-4 px-8 rounded-full font-bold text-lg flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] shadow-xl ${product.stockStatus === 'In Stock' ? 'bg-[#25D366] hover:bg-[#1ebe5b] shadow-[#25D366]/20' : 'bg-slate-400 cursor-not-allowed shadow-none'}`}
+                className={`flex-1 text-white py-3 px-8 rounded-md font-bold text-lg flex items-center justify-center gap-3 transition-colors ${product.stockStatus === 'In Stock' ? 'bg-secondary hover:bg-red-700' : 'bg-slate-400 cursor-not-allowed'}`}
               >
-                <MessageCircle fill="white" size={24} />
-                {product.stockStatus === 'In Stock' ? 'Buy on WhatsApp' : 'Currently Unavailable'}
+                Add To Cart
               </button>
+              <button 
+                onClick={handleWhatsAppBuy}
+                disabled={product.stockStatus !== 'In Stock'}
+                className={`flex-1 text-white py-3 px-8 rounded-md font-bold text-lg flex items-center justify-center gap-3 transition-colors ${product.stockStatus === 'In Stock' ? 'bg-slate-900 hover:bg-slate-800' : 'bg-slate-400 cursor-not-allowed'}`}
+              >
+                Buy It Now
+              </button>
+            </div>
+
+            {/* Delivery & Shipping Info */}
+            <div className="mt-10 border-t border-slate-200 pt-6">
+              <h3 className="text-lg font-bold text-slate-900 mb-4">Delivery & Shipping Info:</h3>
+              <div className="space-y-4">
+                <div className="flex gap-3 items-start">
+                  <Tag size={20} className="text-accent shrink-0 mt-0.5 fill-accent/20" />
+                  <div>
+                    <span className="font-bold text-slate-800 text-sm">Fast Shipping:</span>
+                    <span className="text-slate-600 text-sm ml-1">Enjoy quick and reliable delivery on all orders, with processing times of 1-2 business days.</span>
+                  </div>
+                </div>
+                <div className="flex gap-3 items-start">
+                  <Tag size={20} className="text-accent shrink-0 mt-0.5 fill-accent/20" />
+                  <div>
+                    <span className="font-bold text-slate-800 text-sm">Secure Packaging:</span>
+                    <span className="text-slate-600 text-sm ml-1">All laptops and desktops are carefully packaged to ensure they arrive in perfect condition.</span>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-600 justify-center sm:justify-start">
               <span className="flex items-center gap-2"><ShieldCheck size={18} className="text-secondary" /> {product.warranty || 'Included'}</span>
               <span className="flex items-center gap-2"><Truck size={18} className="text-secondary" /> Fast Delivery</span>
-              <span className="flex items-center gap-2"><Wallet size={18} className="text-secondary" /> Cash on Delivery Available</span>
             </div>
           </div>
         </div>
 
         {/* Detailed Specs Section */}
-        <div className="mt-16 border-t border-slate-100 pt-16">
+        <div className="mt-12 border-t border-slate-200 pt-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Detailed Specifications</h2>
+              <h2 className="text-xl font-bold text-slate-900 mb-6">About the Product</h2>
               
               <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden mb-10 shadow-sm">
                 <table className="w-full text-left border-collapse">

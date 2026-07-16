@@ -22,6 +22,7 @@ const AddEditProduct = () => {
   const { register, control, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
+      category: 'Laptops',
       brand: 'HP',
       model: '',
       realPrice: '',
@@ -139,8 +140,8 @@ const AddEditProduct = () => {
     <div className="max-w-5xl mx-auto pb-10">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{isEditing ? 'Edit Laptop' : 'Add New Laptop'}</h1>
-          <p className="text-slate-500">Fill in the details to list a refurbished laptop.</p>
+          <h1 className="text-2xl font-bold text-slate-900">{isEditing ? 'Edit Product' : 'Add New Product'}</h1>
+          <p className="text-slate-500">Fill in the details to list a product.</p>
         </div>
       </div>
 
@@ -151,13 +152,21 @@ const AddEditProduct = () => {
           <h2 className="text-lg font-bold text-slate-900 mb-6 pb-2 border-b border-slate-100">Basic Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-700 mb-1">Laptop Full Name *</label>
-              <input {...register('name', { required: true })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50" placeholder="e.g. Apple MacBook Pro 16" />
+              <label className="block text-sm font-medium text-slate-700 mb-1">Product Full Name *</label>
+              <input {...register('name', { required: true })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50" placeholder="e.g. Apple MacBook Pro 16 / Dell Optiplex" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Brand *</label>
               <select {...register('brand')} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50">
                 {BRANDS.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Category *</label>
+              <select {...register('category')} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50">
+                <option value="Laptops">Laptops</option>
+                <option value="Desktops">Desktops</option>
+                <option value="Accessories">Accessories</option>
               </select>
             </div>
             <div>
@@ -320,9 +329,9 @@ const AddEditProduct = () => {
           <button 
             type="submit" 
             disabled={isSaving}
-            className="bg-secondary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 disabled:opacity-70"
+            className="bg-secondary hover:bg-red-700 text-white px-8 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 disabled:opacity-70"
           >
-            {isSaving ? <Loader2 className="animate-spin" size={20} /> : 'Save Laptop'}
+            {isSaving ? <Loader2 className="animate-spin" size={20} /> : 'Save Product'}
           </button>
         </div>
 
