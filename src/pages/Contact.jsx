@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import toast from 'react-hot-toast';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +29,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen py-16">
+    <div className="bg-slate-50 min-h-screen pt-12 pb-24">
+      <SEO 
+        title="Contact Us"
+        description="Get in touch with LAPZONE INFOTECH. Reach out for sales, support, and business inquiries."
+        keywords="contact LAPZONE INFOTECH, customer support, laptop repair Theni"
+        url="https://www.lapzoneinfotech.in/contact"
+      />
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">Contact Us</h1>

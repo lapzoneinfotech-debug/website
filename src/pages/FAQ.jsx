@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const faqs = [
   {
@@ -30,6 +31,12 @@ const FAQ = () => {
 
   return (
     <div className="bg-white min-h-screen py-16">
+      <SEO 
+        title="FAQ"
+        description="Frequently Asked Questions about LAPZONE INFOTECH. Learn about our warranty, shipping, and refurbished products."
+        keywords="FAQ LAPZONE INFOTECH, shipping policy, laptop warranty, return policy"
+        url="https://www.lapzoneinfotech.in/faq"
+      />
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h1>

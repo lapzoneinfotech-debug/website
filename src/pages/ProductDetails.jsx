@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, ArrowRight, MessageCircle, ChevronRight, Check, Loader2, Tag } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -55,6 +57,36 @@ const ProductDetails = () => {
 
   return (
     <div className="bg-white min-h-screen pb-20 pt-8">
+      <SEO 
+        title={`${product.name} | ${product.brand}`}
+        description={`Buy ${product.condition} ${product.name} at a discounted price of ₹${product.discountPrice}. ${product.description ? product.description.substring(0, 100) + '...' : ''}`}
+        keywords={`${product.brand} laptop, refurbished ${product.model}, used ${product.name}, buy laptop Theni`}
+        image={product.images && product.images.length > 0 ? product.images[0] : null}
+      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": product.name,
+            "image": product.images || [],
+            "description": product.description || `Refurbished ${product.name}`,
+            "brand": {
+              "@type": "Brand",
+              "name": product.brand
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": window.location.href,
+              "priceCurrency": "INR",
+              "price": product.discountPrice,
+              "itemCondition": "https://schema.org/RefurbishedCondition",
+              "availability": product.stockStatus === 'In Stock' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+            }
+          })}
+        </script>
+      </Helmet>
+      
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Breadcrumbs */}

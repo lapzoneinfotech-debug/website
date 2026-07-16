@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const Gallery = () => {
   // We copied 12 images named img-1.jpg to img-12.jpg
@@ -6,6 +7,12 @@ const Gallery = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen pt-12 pb-24">
+      <SEO 
+        title="Store Gallery"
+        description="Take a look inside LAPZONE INFOTECH. See our wide range of premium refurbished laptops, desktops, and accessories."
+        keywords="LAPZONE INFOTECH gallery, computer store photos, Theni computer shop"
+        url="https://www.lapzoneinfotech.in/gallery"
+      />
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Our Store Gallery</h1>

@@ -1,8 +1,16 @@
-import { ShieldCheck, Target, Award, Users } from 'lucide-react';
+import { ShieldCheck, Target, Award, Users, CheckCircle2 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const AboutUs = () => {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white pb-20">
+      <SEO 
+        title="About Us"
+        description="Learn about LAPZONE INFOTECH. We are dedicated to providing high-quality, affordable refurbished electronics across India."
+        keywords="about LAPZONE INFOTECH, our mission, refurbished electronics India"
+        url="https://www.lapzoneinfotech.in/about"
+      />
+
       {/* Hero Section */}
       <section className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center">

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Truck, Star, Loader2, Globe, Phone } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import { collection, getDocs, query, where, limit } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
@@ -35,6 +36,12 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden bg-white">
+      <SEO 
+        title="Home"
+        description="Your one-stop shop for premium refurbished laptops, desktops, and accessories. Experience top quality with our LAPZONE INFOTECH warranty."
+        keywords="LAPZONE INFOTECH home, refurbished computers, buy laptops online India"
+        url="https://www.lapzoneinfotech.in/"
+      />
       {/* Hero Section */}
       <section className="relative w-full overflow-hidden bg-slate-50 pt-10 pb-0">
         {/* Background Arc */}

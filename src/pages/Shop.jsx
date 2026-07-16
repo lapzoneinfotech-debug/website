@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { Search, Filter, X, ChevronDown, SlidersHorizontal, Loader2 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
@@ -161,6 +162,12 @@ const Shop = () => {
 
   return (
     <div className="bg-white min-h-screen pt-8 pb-20">
+      <SEO 
+        title="Shop Laptops & Desktops"
+        description="Browse our wide selection of premium refurbished laptops and desktops. Filter by brand, condition, and price to find your perfect match."
+        keywords="shop refurbished laptops, buy used desktops, LAPZONE INFOTECH shop, affordable computers"
+        url="https://www.lapzoneinfotech.in/shop"
+      />
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-slate-100 pb-6">
           <div className="w-full md:w-auto">
