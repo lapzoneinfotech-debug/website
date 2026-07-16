@@ -65,7 +65,7 @@ const AdminDashboard = () => {
         <p className="text-slate-500">Welcome back! Here's what's happening today.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <StatCard 
           title="Total Products" 
           value={stats.totalProducts} 
@@ -79,20 +79,6 @@ const AdminDashboard = () => {
           icon={<Star size={24} />} 
           bgClass="bg-amber-50" 
           textClass="text-amber-600"
-        />
-        <StatCard 
-          title="Total Views" 
-          value={stats.totalViews.toLocaleString()} 
-          icon={<Eye size={24} />} 
-          bgClass="bg-purple-50" 
-          textClass="text-purple-600"
-        />
-        <StatCard 
-          title="Conversion Rate" 
-          value="4.2%" 
-          icon={<TrendingUp size={24} />} 
-          bgClass="bg-emerald-50" 
-          textClass="text-emerald-600"
         />
       </div>
 
