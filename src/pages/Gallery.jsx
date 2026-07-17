@@ -54,7 +54,7 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4 }}
-                className="min-w-[85vw] sm:min-w-[60vw] md:min-w-[40vw] lg:min-w-[30vw] aspect-[4/3] bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex-shrink-0 snap-center"
+                className="w-[80vw] h-[60vw] sm:w-[50vw] sm:h-[37vw] md:w-[320px] md:h-[240px] lg:w-[360px] lg:h-[270px] bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex-shrink-0 snap-center"
               >
                 <img 
                   src={src} 
