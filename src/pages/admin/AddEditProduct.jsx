@@ -34,7 +34,7 @@ const AddEditProduct = () => {
       display: '',
       batteryHealth: '',
       os: 'Windows 11',
-      warranty: '6 Months',
+      warranty: '12 Months',
       accessories: 'Charger',
       condition: 'Excellent',
       stockStatus: 'In Stock',
