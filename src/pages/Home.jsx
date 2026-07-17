@@ -101,26 +101,26 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="flex justify-center gap-8 md:gap-16 text-center">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:flex md:justify-center md:gap-16 text-center">
             <Link to="/shop?category=laptops" className="group flex flex-col items-center">
-              <div className="w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-3 md:mb-4 border-2 md:border-4 border-white shadow-md group-hover:shadow-xl transition-shadow mx-auto">
                 <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=400&auto=format&fit=crop" alt="Laptops" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
-              <h3 className="text-lg md:text-xl font-semibold text-slate-800">Laptops</h3>
+              <h3 className="text-sm sm:text-base md:text-xl font-semibold text-slate-800">Laptops</h3>
             </Link>
             
             <Link to="/shop?category=desktops" className="group flex flex-col items-center">
-              <div className="w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-3 md:mb-4 border-2 md:border-4 border-white shadow-md group-hover:shadow-xl transition-shadow mx-auto">
                 <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=400&auto=format&fit=crop" alt="Desktops" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
-              <h3 className="text-lg md:text-xl font-semibold text-slate-800">Desktops</h3>
+              <h3 className="text-sm sm:text-base md:text-xl font-semibold text-slate-800">Desktops</h3>
             </Link>
 
             <Link to="/shop?category=accessories" className="group flex flex-col items-center">
-              <div className="w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-3 md:mb-4 border-2 md:border-4 border-white shadow-md group-hover:shadow-xl transition-shadow mx-auto">
                 <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?q=80&w=400&auto=format&fit=crop" alt="Accessories" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
-              <h3 className="text-lg md:text-xl font-semibold text-slate-800">Accessories</h3>
+              <h3 className="text-sm sm:text-base md:text-xl font-semibold text-slate-800 break-words w-full px-1">Accessories</h3>
             </Link>
           </div>
           
