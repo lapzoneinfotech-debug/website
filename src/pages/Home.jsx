@@ -75,8 +75,8 @@ const Home = () => {
           </Link>
 
           {/* Hero Image Collage */}
-          <div className="mt-12 w-full max-w-4xl mx-auto flex justify-center items-end px-4">
-            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=1200&auto=format&fit=crop" alt="Premium Laptops and Desktops" className="w-full h-auto object-cover max-h-[400px] rounded-t-3xl shadow-2xl mix-blend-multiply" />
+          <div className="mt-12 mb-8 w-full max-w-4xl mx-auto flex justify-center items-end px-4">
+            <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=1200&auto=format&fit=crop" alt="Premium Laptops and Desktops" className="w-full h-auto object-cover max-h-[400px] rounded-3xl shadow-2xl mix-blend-multiply" />
           </div>
         </div>
 

@@ -56,7 +56,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen pb-20 pt-8">
+    <div className="bg-white min-h-screen pb-20 pt-4">
       <SEO 
         title={`${product.name} | ${product.brand}`}
         description={`Buy ${product.condition} ${product.name} at a discounted price of ₹${product.discountPrice}. ${product.description ? product.description.substring(0, 100) + '...' : ''}`}
@@ -90,7 +90,7 @@ const ProductDetails = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-sm text-slate-500 mb-8 overflow-x-auto whitespace-nowrap">
+        <div className="flex items-center gap-2 text-sm text-slate-500 mb-4 md:mb-8 overflow-x-auto whitespace-nowrap">
           <Link to="/" className="hover:text-secondary">Home</Link>
           <ChevronRight size={14} />
           <Link to="/shop" className="hover:text-secondary">Shop</Link>

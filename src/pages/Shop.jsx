@@ -161,7 +161,7 @@ const Shop = () => {
 
 
   return (
-    <div className="bg-white min-h-screen pt-8 pb-20">
+    <div className="bg-white min-h-screen pt-4 pb-20">
       <SEO 
         title="Shop Laptops & Desktops"
         description="Browse our wide selection of premium refurbished laptops and desktops. Filter by brand, condition, and price to find your perfect match."
@@ -171,7 +171,7 @@ const Shop = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 border-b border-slate-100 pb-6">
           <div className="w-full md:w-auto">
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Shop Laptops</h1>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">Shop {selectedCategory === 'All' ? 'Products' : selectedCategory}</h1>
             <p className="text-slate-500 mb-4 md:mb-0">Showing {filteredProducts.length} results</p>
           </div>
           
@@ -179,7 +179,7 @@ const Shop = () => {
             <div className="relative w-full sm:w-64 md:w-72 shrink-0">
               <input 
                 type="text" 
-                placeholder="Search laptops..." 
+                placeholder={`Search ${selectedCategory === 'All' ? 'products' : selectedCategory.toLowerCase()}...`} 
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -244,7 +244,7 @@ const Shop = () => {
                 <div className="w-20 h-20 bg-slate-200 text-slate-400 rounded-full flex items-center justify-center mb-6">
                   <Search size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-2">No laptops found</h3>
+                <h3 className="text-2xl font-bold text-slate-800 mb-2">No {selectedCategory === 'All' ? 'products' : selectedCategory.toLowerCase()} found</h3>
                 <p className="text-slate-500 max-w-md">Try adjusting your filters or search query to find what you're looking for.</p>
                 <button 
                   onClick={() => {
