@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { Search, Filter, X, ChevronDown, SlidersHorizontal, Loader2 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
@@ -82,6 +82,8 @@ const FilterSidebar = ({
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const initialSearch = location.state?.search || '';
   const initialCategory = searchParams.get('category') || 'All';
   // Capitalize the first letter if it came from the URL as lowercase (e.g. 'laptops' -> 'Laptops')
   const formattedInitialCategory = initialCategory !== 'All' 
@@ -91,7 +93,7 @@ const Shop = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(formattedInitialCategory);
   const [selectedBrand, setSelectedBrand] = useState('All');
   const [selectedCondition, setSelectedCondition] = useState('All');
@@ -112,6 +114,14 @@ const Shop = () => {
     };
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (location.state?.search !== undefined) {
+      setSearchQuery(location.state.search);
+      // Clear location state so search doesn't persist on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state?.search]);
 
   const filteredProducts = useMemo(() => {
     let result = allProducts;

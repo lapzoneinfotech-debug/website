@@ -64,30 +64,10 @@ const Navbar = () => {
 
         </div>
 
-        {/* Bottom Search Row (Always visible, similar to JP screenshot) */}
-        <div className="container mx-auto px-4 pb-3">
-          <form onSubmit={handleSearch} className="flex items-center gap-2">
-            <div className="relative flex-1">
-              <input 
-                type="text" 
-                placeholder="Search For Products..." 
-                className="w-full pl-4 pr-4 py-2 bg-white border border-slate-300 focus:outline-none focus:border-secondary text-slate-800"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <button 
-              type="submit"
-              className="bg-secondary text-white px-4 py-2 hover:bg-red-700 transition-colors flex items-center justify-center shrink-0"
-            >
-              <Search size={20} />
-            </button>
-          </form>
-        </div>
       </nav>
 
       {/* spacer to prevent content from going under the fixed navbar */}
-      <div className="h-28 md:h-32"></div>
+      <div className="h-16 md:h-20"></div>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
