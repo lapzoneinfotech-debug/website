@@ -8,7 +8,7 @@ import { Loader2, Plus, Trash2, Image as ImageIcon, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const BRANDS = ['Apple', 'Dell', 'Lenovo', 'HP', 'Asus', 'Acer', 'MSI', 'Others'];
-const CONDITIONS = ['Like New', 'Excellent', 'Good'];
+const CONDITIONS = ['New', 'Excellent', 'Good'];
 
 const AddEditProduct = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const AddEditProduct = () => {
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  const { register, control, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, control, handleSubmit, reset, watch, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
       category: 'Laptops',
@@ -43,6 +43,8 @@ const AddEditProduct = () => {
       specs: [{ point: '' }]
     }
   });
+
+  const selectedCategory = watch('category');
 
   const { fields: specFields, append: appendSpec, remove: removeSpec } = useFieldArray({
     control,
@@ -236,8 +238,9 @@ const AddEditProduct = () => {
         </div>
 
         {/* Specifications */}
-        <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
-          <h2 className="text-lg font-bold text-slate-900 mb-6 pb-2 border-b border-slate-100">Hardware Specifications</h2>
+        {selectedCategory !== 'Accessories' && (
+          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <h2 className="text-lg font-bold text-slate-900 mb-6 pb-2 border-b border-slate-100">Hardware Specifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Processor</label>
@@ -271,12 +274,13 @@ const AddEditProduct = () => {
               <label className="block text-sm font-medium text-slate-700 mb-1">Warranty Details</label>
               <input {...register('warranty')} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50" />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Accessories Included</label>
-              <input {...register('accessories')} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50" placeholder="e.g. Original Charger, Bag" />
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Accessories Included</label>
+                <input {...register('accessories')} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50" placeholder="e.g. Original Charger, Bag" />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Description & Detailed Specs */}
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">

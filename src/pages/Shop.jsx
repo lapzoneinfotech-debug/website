@@ -61,7 +61,7 @@ const FilterSidebar = ({
     <div>
       <h3 className="font-bold text-slate-900 mb-3 text-lg">Condition</h3>
       <div className="flex flex-col gap-1">
-        {['All', 'Like New', 'Excellent', 'Good'].map(cond => (
+        {['All', 'New', 'Excellent', 'Good'].map(cond => (
           <div 
             key={cond} 
             className="flex items-center gap-3 cursor-pointer group py-2"

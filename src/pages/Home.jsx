@@ -115,6 +115,13 @@ const Home = () => {
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-slate-800">Desktops</h3>
             </Link>
+
+            <Link to="/shop?category=accessories" className="group flex flex-col items-center">
+              <div className="w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden bg-orange-50 mb-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-shadow">
+                <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?q=80&w=400&auto=format&fit=crop" alt="Accessories" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+              </div>
+              <h3 className="text-lg md:text-xl font-semibold text-slate-800">Accessories</h3>
+            </Link>
           </div>
           
           <div className="mt-8 text-center sm:hidden">
