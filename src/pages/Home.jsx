@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShieldCheck, Truck, Star, Loader2, Globe, Phone } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Truck, Star, Loader2, Globe, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import { collection, getDocs, query, where, limit } from 'firebase/firestore';
@@ -10,6 +10,17 @@ import { db } from '../lib/firebase';
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const galleryImages = Array.from({ length: 12 }, (_, i) => `/gallery/img-${i + 1}.jpg`);
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
@@ -186,6 +197,63 @@ const Home = () => {
               <h3 className="text-lg font-bold mb-2 text-slate-900">Fast Delivery</h3>
               <p className="text-slate-600 text-sm">Secure and fast shipping straight to your doorstep with tracking every step of the way.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Happy Customers / Gallery Section */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-10 border-b border-slate-200 pb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Our Happy Customers</h2>
+          </div>
+
+          <div className="relative group max-w-[100vw] overflow-hidden -mx-4 px-4 md:mx-0 md:px-0">
+            {/* Left Button */}
+            <button 
+              onClick={() => scroll('left')}
+              className="absolute left-6 md:left-2 top-1/2 -translate-y-1/2 z-10 bg-slate-800/60 hover:bg-slate-900 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all disabled:opacity-0 md:opacity-0 group-hover:opacity-100 shadow-xl backdrop-blur-sm"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            {/* Scroll Container */}
+            <div 
+              ref={scrollRef}
+              className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
+            >
+              {galleryImages.map((src, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4 }}
+                  className="w-[80vw] h-[60vw] sm:w-[50vw] sm:h-[37vw] md:w-[320px] md:h-[240px] lg:w-[360px] lg:h-[270px] bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex-shrink-0 snap-center"
+                >
+                  <img 
+                    src={src} 
+                    alt={`Happy Customer ${index + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Right Button */}
+            <button 
+              onClick={() => scroll('right')}
+              className="absolute right-6 md:right-2 top-1/2 -translate-y-1/2 z-10 bg-slate-800/60 hover:bg-slate-900 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all md:opacity-0 group-hover:opacity-100 shadow-xl backdrop-blur-sm"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <Link to="/gallery" className="inline-flex items-center justify-center bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors">
+              View Full Gallery
+            </Link>
           </div>
         </div>
       </section>
